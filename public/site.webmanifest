@@ -1,0 +1,16 @@
+{
+  "name": "Prime Core",
+  "short_name": "Prime Core",
+  "description": "Prime Core Termiz fit taomlari",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f3e7",
+  "theme_color": "#064d2e",
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}

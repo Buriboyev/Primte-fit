@@ -17,6 +17,7 @@ import { useStoredState } from "./hooks/useStoredState.js";
 import { createOrderId } from "./utils/format.js";
 import { CART_KEY, loadOrders, saveOrders } from "./utils/storage.js";
 import { requestStartupPermissions } from "./utils/permissions.js";
+import { playOrderSound, unlockOrderSound } from "./utils/sound.js";
 
 export default function App() {
   const [cart, setCart] = useStoredState(CART_KEY, []);
@@ -28,6 +29,8 @@ export default function App() {
   const [logoClicks, setLogoClicks] = useState(0);
   const [useCloudOrders, setUseCloudOrders] = useState(isFirebaseConfigured());
   const toastTimer = useRef();
+  const knownOrderKeys = useRef(new Set());
+  const hasLoadedOrders = useRef(false);
 
   const showToast = useCallback((message) => {
     setToast(message);
@@ -87,6 +90,25 @@ export default function App() {
     };
   }, [showToast, useCloudOrders]);
 
+  useEffect(() => {
+    const orderKeys = orders.map((order) => order.firebaseId || order.id).filter(Boolean);
+    const nextKnownKeys = new Set(orderKeys);
+
+    if (!hasLoadedOrders.current) {
+      knownOrderKeys.current = nextKnownKeys;
+      hasLoadedOrders.current = true;
+      return;
+    }
+
+    const hasNewOrder = orderKeys.some((orderKey) => !knownOrderKeys.current.has(orderKey));
+    knownOrderKeys.current = nextKnownKeys;
+
+    if (view === "admin" && hasNewOrder) {
+      playOrderSound();
+      showToast("Yangi zakaz keldi");
+    }
+  }, [orders, showToast, view]);
+
   const cartItems = useMemo(() => {
     return cart
       .map((entry) => {
@@ -117,6 +139,7 @@ export default function App() {
   }, [cartItems]);
 
   function addToCart(productId) {
+    unlockOrderSound();
     const product = products.find((item) => item.id === productId);
     if (!product) return;
 
@@ -133,6 +156,7 @@ export default function App() {
   }
 
   function updateQty(productId, direction) {
+    unlockOrderSound();
     setCart((current) => {
       return current
         .map((item) => (item.id === productId ? { ...item, qty: item.qty + direction } : item))
@@ -142,6 +166,7 @@ export default function App() {
 
   function handleLogoClick(event) {
     event.preventDefault();
+    unlockOrderSound();
     const nextClicks = logoClicks + 1;
     setLogoClicks(nextClicks);
 
@@ -155,6 +180,7 @@ export default function App() {
   }
 
   async function submitOrder(payload) {
+    await unlockOrderSound();
     const order = {
       id: createOrderId(),
       createdAt: new Date().toISOString(),
@@ -184,6 +210,7 @@ export default function App() {
 
     setCart([]);
     setCheckoutOpen(false);
+    playOrderSound();
     showToast("Zakaz qabul qilindi. Admin panelda ko'rinadi.");
   }
 
@@ -240,7 +267,10 @@ export default function App() {
       <Header
         cartCount={cartCount}
         isAdmin={view === "admin"}
-        onCartOpen={() => setCartOpen(true)}
+        onCartOpen={() => {
+          unlockOrderSound();
+          setCartOpen(true);
+        }}
         onLogoClick={handleLogoClick}
         onShop={() => setView("shop")}
       />
@@ -260,7 +290,10 @@ export default function App() {
           cartTotal={cartTotal}
           onAddToCart={addToCart}
           onClearCart={() => setCart([])}
-          onCheckoutOpen={() => setCheckoutOpen(true)}
+          onCheckoutOpen={() => {
+            unlockOrderSound();
+            setCheckoutOpen(true);
+          }}
           onUpdateQty={updateQty}
         />
       )}
@@ -270,6 +303,7 @@ export default function App() {
         cartOpen={cartOpen}
         cartTotal={cartTotal}
         onCheckoutOpen={() => {
+          unlockOrderSound();
           setCartOpen(false);
           setCheckoutOpen(true);
         }}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://primte-fit.vercel.app/sitemap.xml
