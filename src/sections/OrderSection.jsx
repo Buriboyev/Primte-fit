@@ -50,7 +50,7 @@ export function OrderSection({
         </div>
 
         <div className="order-preview">
-          <img src="/assets/meal-salmon-bowl.jpg" alt="Prime Fit fit konteyner taomi" />
+          <img src="/assets/meal-salmon-bowl.jpg" alt="Prime Core fit konteyner taomi" />
           <div className="nutrition-strip glass">
             <span>Protein</span>
             <strong>{cartMacros.protein}g</strong>

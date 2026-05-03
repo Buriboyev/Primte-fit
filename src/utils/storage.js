@@ -1,5 +1,5 @@
-export const STORAGE_KEY = "primefit_orders_v1";
-export const CART_KEY = "primefit_cart_v1";
+export const STORAGE_KEY = "primecore_orders_v1";
+export const CART_KEY = "primecore_cart_v1";
 
 export function loadOrders() {
   try {

@@ -25,7 +25,7 @@ export function AdminPanel({ orders, onClearOrders, onDeleteOrder, onRefreshOrde
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `prime-fit-orders-${new Date().toISOString().slice(0, 10)}.json`;
+    link.download = `prime-core-orders-${new Date().toISOString().slice(0, 10)}.json`;
     link.click();
     URL.revokeObjectURL(url);
   }
@@ -34,7 +34,7 @@ export function AdminPanel({ orders, onClearOrders, onDeleteOrder, onRefreshOrde
     <main className="admin-main" id="orders">
       <section className="admin-hero">
         <div>
-          <p className="eyebrow">Prime Fit</p>
+          <p className="eyebrow">Prime Core</p>
           <h1>Zakazlar paneli</h1>
         </div>
         <div className="admin-actions">
