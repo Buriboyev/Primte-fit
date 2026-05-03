@@ -1,5 +1,6 @@
 import React from "react";
 import { HeroSection } from "./HeroSection.jsx";
+import { LocationSection } from "./LocationSection.jsx";
 import { MenuSection } from "./MenuSection.jsx";
 import { OrderSection } from "./OrderSection.jsx";
 
@@ -24,6 +25,7 @@ export function ShopPage({
         onCheckoutOpen={onCheckoutOpen}
         onUpdateQty={onUpdateQty}
       />
+      <LocationSection />
     </main>
   );
 }
