@@ -14,7 +14,7 @@ export function LocationSection() {
           <p className="eyebrow">Termizdagi Prime Core</p>
           <h2 id="locationTitle">Real do'kon. Tez yetkazish.</h2>
           <p>
-            Buyurtmani xaritadan tanlaysiz, admin panelda manzil ochiladi. Termiz ichida fit
+            Buyurtmani xaritadan tanlaysiz. Termiz ichida fit
             konteynerlar tayyor holda yetkaziladi.
           </p>
           <a className="primary-button" href={mapsUrl} target="_blank" rel="noreferrer">
