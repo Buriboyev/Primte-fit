@@ -8,10 +8,10 @@ export function LocationSection() {
     <section className="section location-section" id="location" aria-labelledby="locationTitle">
       <div className="location-layout">
         <div className="location-media">
-          <img src="/assets/storefront.png" alt="Prime Core Termiz do'koni fasadi" />
+          <img src="/assets/storefront.png" alt="Prime Fit Termiz do'koni fasadi" />
         </div>
         <div className="location-copy glass">
-          <p className="eyebrow">Termizdagi Prime Core</p>
+          <p className="eyebrow">Termizdagi Prime Fit</p>
           <h2 id="locationTitle">Real do'kon. Tez yetkazish.</h2>
           <p>
             Buyurtmani xaritadan tanlaysiz. Termiz ichida fit
@@ -23,7 +23,7 @@ export function LocationSection() {
           </a>
           <span className="location-pin">
             <MapPin aria-hidden="true" />
-            Prime Core, Termiz
+            Prime Fit, Termiz
           </span>
         </div>
       </div>

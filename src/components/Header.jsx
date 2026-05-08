@@ -4,9 +4,9 @@ import { ShoppingBag } from "lucide-react";
 export function Header({ cartCount, isAdmin, onCartOpen, onLogoClick, onShop }) {
   return (
     <header className="site-header glass">
-      <a className="brand" href="#top" aria-label="Prime Core maxfiy admin tugmasi" onClick={onLogoClick}>
-        <img src="/assets/logo.png" alt="Prime Core" />
-        <span>{isAdmin ? "Admin" : "Prime Core"}</span>
+      <a className="brand" href="#top" aria-label="Prime Fit maxfiy admin tugmasi" onClick={onLogoClick}>
+        <img src="/assets/logo.png" alt="Prime Fit" />
+        <span>{isAdmin ? "Admin" : "Prime Fit"}</span>
       </a>
       <nav className="nav-links" aria-label="Asosiy menyu">
         {isAdmin ? (

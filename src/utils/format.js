@@ -15,7 +15,7 @@ export function formatMoney(value) {
 export function createOrderId() {
   const datePart = new Date().toISOString().slice(2, 10).replaceAll("-", "");
   const randomPart = Math.floor(1000 + Math.random() * 9000);
-  return `PC-${datePart}-${randomPart}`;
+  return `PF-${datePart}-${randomPart}`;
 }
 
 export function isToday(order) {
